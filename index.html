@@ -78,16 +78,52 @@
     .profile-section p:hover {
       color: #22ff22;
     }
+    .glass-container {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 255, 128, 0.1);
+      padding: 2rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
   </style>
 </head>
 <body>
-  <h2 data-i18n="title" class="text-4xl font-extrabold tracking-wide text-green-400 drop-shadow-lg text-center mt-10 mb-4">
-  marianobiotico <span class="font-light">+</span> DevApps
-</h2>
+  <main class="container mx-auto px-4">
+    <div class="glass-container">
+      <h2 data-i18n="title" class="text-4xl font-extrabold tracking-wide text-green-400 drop-shadow-lg text-center mt-10 mb-4">
+        marianobiotico <span class="font-light">+</span> DevApps
+      </h2>
 
-  <div class="subtitle" data-i18n="subtitle">Aplicaciones desarrolladas con IA, web y backend</div>
+      <div class="subtitle" data-i18n="subtitle">Aplicaciones desarrolladas con IA, web y backend</div>
 
-  <div class="app-grid" id="app-grid"></div>
+      <div class="app-grid" id="app-grid"></div>
+
+      <!-- PERFIL PROFESIONAL -->
+      <section class="px-6 py-12 text-sm space-y-4 bg-black border-t border-gray-800 profile-section">
+        <h3 class="text-2xl font-bold text-center mb-6 text-green-300" data-i18n="about_title">🧑‍💻 Sobre mí</h3>
+        <p data-i18n="about_intro"><strong class="text-green-400">Mariano Biotico</strong> – Desarrollador Full Stack especializado en Inteligencia Artificial aplicada. Combino código, datos y visión crítica para crear herramientas útiles, éticas y elegantes.</p>
+        <p data-i18n="about_focus">Me enfoco en aplicaciones web con IA para educación, salud, análisis legal y terapias conversacionales. Desarrollo con <code>Flask</code>, <code>GPT-4o</code>, <code>Puter.js</code>, <code>Tailwind</code> y exportación a <code>PDF/DOCX</code>.</p>
+        <p data-i18n="about_values">Trabajo con énfasis en privacidad, accesibilidad y diseño minimalista orientado al bienestar social y el pensamiento crítico.</p>
+      </section>
+    </div>
+  </main>
+
+  <!-- FOOTER COMPLETO -->
+  <footer class="text-center text-xs text-gray-500 mt-6 space-y-2">
+    <div class="flex flex-wrap justify-center items-center gap-2">
+      <span data-i18n="coffee">💖 ¿Te gustan estas apps?</span>
+      <a href="https://cafecito.app/marianobiotico" target="_blank" class="underline hover:text-blue-400">Cafecito</a>
+      <a href="https://www.buymeacoffee.com/marianobiotico" target="_blank" class="underline hover:text-yellow-500">BuyMeACoffee</a>
+      <a href="https://github.com/electrobiotica" target="_blank" title="GitHub" class="hover:text-white">GitHub</a>
+      <a href="https://instagram.com/marianobiotico" target="_blank" title="Instagram" class="hover:text-pink-500">Instagram</a>
+      <a href="mailto:marianobiotico@gmail.com" title="Email" class="hover:text-blue-400">Email</a>
+      <a href="https://wa.me/5491127278058" target="_blank" title="WhatsApp" class="hover:text-green-400">WhatsApp</a>
+    </div>
+  </footer>
 
   <script>
     const apps = [
@@ -107,7 +143,7 @@
         item.className = "app-item";
         item.innerHTML = `
           <img src="${app.img}" alt="${app.nombre}">
-          <div class="description" onclick=\"location.href='${app.link}'\">
+          <div class="description" onclick="location.href='${app.link}'">
             <strong>${app.nombre}</strong><br>
             ${app.desc}
             <a href="${app.link}" target="_blank" data-i18n="see_more">Ver más</a>
@@ -116,30 +152,7 @@
         grid.appendChild(item);
       });
     });
-  </script>
 
-  <!-- PERFIL PROFESIONAL -->
-  <section class="px-6 py-12 text-sm space-y-4 bg-black border-t border-gray-800 profile-section">
-    <h3 class="text-2xl font-bold text-center mb-6 text-green-300" data-i18n="about_title">🧑‍💻 Sobre mí</h3>
-    <p data-i18n="about_intro"><strong class="text-green-400">Mariano Biotico</strong> – Desarrollador Full Stack especializado en Inteligencia Artificial aplicada. Combino código, datos y visión crítica para crear herramientas útiles, éticas y elegantes.</p>
-    <p data-i18n="about_focus">Me enfoco en aplicaciones web con IA para educación, salud, análisis legal y terapias conversacionales. Desarrollo con <code>Flask</code>, <code>GPT-4o</code>, <code>Puter.js</code>, <code>Tailwind</code> y exportación a <code>PDF/DOCX</code>.</p>
-    <p data-i18n="about_values">Trabajo con énfasis en privacidad, accesibilidad y diseño minimalista orientado al bienestar social y el pensamiento crítico.</p>
-  </section>
-
-  <!-- FOOTER COMPLETO -->
-  <footer class="text-center text-xs text-gray-500 mt-6 space-y-2">
-    <div class="flex flex-wrap justify-center items-center gap-2">
-      <span data-i18n="coffee">💖 ¿Te gustan estas apps?</span>
-      <a href="https://cafecito.app/marianobiotico" target="_blank" class="underline hover:text-blue-400">Cafecito</a>
-      <a href="https://www.buymeacoffee.com/marianobiotico" target="_blank" class="underline hover:text-yellow-500">BuyMeACoffee</a>
-      <a href="https://github.com/electrobiotica" target="_blank" title="GitHub" class="hover:text-white">GitHub</a>
-      <a href="https://instagram.com/marianobiotico" target="_blank" title="Instagram" class="hover:text-pink-500">Instagram</a>
-      <a href="mailto:marianobiotico@gmail.com" title="Email" class="hover:text-blue-400">Email</a>
-      <a href="https://wa.me/5491127278058" target="_blank" title="WhatsApp" class="hover:text-green-400">WhatsApp</a>
-    </div>
-  </footer>
-
-  <script>
     const lang = {
       es: {
         title: "marianobiotico + DevApps",
@@ -171,7 +184,6 @@
       });
     }
 
-    // set default language
     setLanguage('es');
   </script>
 </body>
