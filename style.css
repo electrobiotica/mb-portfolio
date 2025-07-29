@@ -1,0 +1,118 @@
+body {
+  margin: 0;
+  background: #000;
+  color: #fff;
+  font-family: 'IBM Plex Mono', monospace;
+  transition: background 0.3s, color 0.3s;
+}
+
+.subtitle {
+  text-align: center;
+  color: #aaa;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0;
+  width: 100%;
+  max-width: 100vw;
+}
+
+.app-item {
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  background: #111;
+}
+
+.app-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+@media (max-width: 600px) {
+  .app-item img { 
+    height: auto; 
+  }
+  .description { 
+    font-size: 12px; 
+    padding: 10px; 
+  }
+}
+
+.app-item:hover img { 
+  opacity: 0.3; 
+}
+
+.description {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.85);
+  padding: 12px;
+  border-radius: 14px;
+  font-size: 13px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  cursor: pointer;
+  width: 90%;
+  max-width: 280px;
+}
+
+.app-item:hover .description { 
+  opacity: 1; 
+}
+
+.description a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  margin-top: 6px;
+}
+
+.profile-section p {
+  transition: color 0.3s;
+}
+
+.profile-section p:hover {
+  color: #22ff22;
+}
+
+.glass-container {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 255, 128, 0.1);
+  padding: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.lang-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #111;
+  border: 1px solid #333;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  color: #0f0;
+  transition: all 0.3s;
+}
+
+.lang-toggle:hover {
+  background: #1a1a1a;
+  color: #fff;
+}
