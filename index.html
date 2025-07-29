@@ -10,22 +10,20 @@
     body {
       margin: 0;
       background: #000;
-      color: white;
+      color: #fff;
       font-family: 'IBM Plex Mono', monospace;
+      transition: background 0.3s, color 0.3s;
     }
-
     h2 {
       text-align: center;
       margin: 30px 0 10px;
     }
-
     .subtitle {
       text-align: center;
       color: #aaa;
       font-size: 16px;
       margin-bottom: 30px;
     }
-
     .app-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -33,38 +31,24 @@
       width: 100%;
       max-width: 100vw;
     }
-
     .app-item {
       position: relative;
       text-align: center;
       overflow: hidden;
       background: #111;
     }
-
-   .app-item img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  display: block;
-  transition: opacity 0.3s ease;
-}
-
-@media (max-width: 600px) {
-  .app-item img {
-    height: auto;
-
-  }
-
-  .description {
-    font-size: 12px;
-    padding: 10px;
-  }
-}
-
-    .app-item:hover img {
-      opacity: 0.3;
+    .app-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s ease;
     }
-
+    @media (max-width: 600px) {
+      .app-item img { height: auto; }
+      .description { font-size: 12px; padding: 10px; }
+    }
+    .app-item:hover img { opacity: 0.3; }
     .description {
       position: absolute;
       top: 50%;
@@ -80,11 +64,7 @@
       width: 90%;
       max-width: 280px;
     }
-
-    .app-item:hover .description {
-      opacity: 1;
-    }
-
+    .app-item:hover .description { opacity: 1; }
     .description a {
       color: #fff;
       text-decoration: none;
@@ -92,31 +72,20 @@
       display: block;
       margin-top: 6px;
     }
-
-    .contact-section {
-      text-align: center;
-      padding: 30px 0;
-      background: #111;
+    .profile-section p {
+      transition: color 0.3s;
     }
-
-    .contact-section a {
-      color: white;
-      text-decoration: none;
-      display: block;
-      margin: 5px 0;
-    }
-
-    @media (max-width: 400px) {
-      .description {
-        font-size: 12px;
-        padding: 10px;
-      }
+    .profile-section p:hover {
+      color: #22ff22;
     }
   </style>
 </head>
 <body>
-  <h2>marianobiotico <span style="font-weight: lighter;">+</span> DevApps</h2>
-  <div class="subtitle">Aplicaciones desarrolladas con IA, web y backend</div>
+  <h2 data-i18n="title" class="text-4xl font-extrabold tracking-wide text-green-400 drop-shadow-lg text-center mt-10 mb-4">
+  marianobiotico <span class="font-light">+</span> DevApps
+</h2>
+
+  <div class="subtitle" data-i18n="subtitle">Aplicaciones desarrolladas con IA, web y backend</div>
 
   <div class="app-grid" id="app-grid"></div>
 
@@ -128,10 +97,7 @@
       { nombre: "MultiContratos", desc: "Analizador legal para contratos de alquiler, trabajo, música, etc.", link: "https://multicontratos.onrender.com", img: "images/multicontratos-c.jpg" },
       { nombre: "Lyric Explainer AI", desc: "Analiza letras de canciones y ofrece interpretación con IA.", link: "https://lyricexplainerai.onrender.com", img: "images/lyric-c.jpg" },
       { nombre: "Examnia", desc: "Generador de exámenes en PDF y DOCX a partir de temas o textos.", link: "https://examnia.onrender.com", img: "images/examgen-c.jpg" },
-      { nombre: "DR.AI Argentina", desc: "Agente médico experimental con análisis sintomático local.", link: "https://dr-ai-ar.onrender.com", img: "images/drai-c.jpg" },
-      // { nombre: "SubsidiosYa", desc: "Herramienta para verificar elegibilidad de subsidios.", link: "https://subsidiosya.onrender.com", img: "images/subsidiosya.jpg" },
-      // { nombre: "PuterBox Test", desc: "Entorno de pruebas para interfaz IA con múltiples entradas y salidas.", link: "https://puterbox-test.onrender.com", img: "images/puterbox.jpg" },
-      // { nombre: "Multi-Model AI", desc: "App para comparar múltiples modelos de lenguaje.", link: "https://multi-model.onrender.com", img: "images/multimodel.jpg" }
+      { nombre: "DR.AI Argentina", desc: "Agente médico experimental con análisis sintomático local.", link: "https://dr-ai-ar.onrender.com", img: "images/drai-c.jpg" }
     ];
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -141,10 +107,10 @@
         item.className = "app-item";
         item.innerHTML = `
           <img src="${app.img}" alt="${app.nombre}">
-          <div class="description" onclick="location.href='${app.link}'">
+          <div class="description" onclick=\"location.href='${app.link}'\">
             <strong>${app.nombre}</strong><br>
             ${app.desc}
-            <a href="${app.link}" target="_blank">Ver más</a>
+            <a href="${app.link}" target="_blank" data-i18n="see_more">Ver más</a>
           </div>
         `;
         grid.appendChild(item);
@@ -152,33 +118,61 @@
     });
   </script>
 
-  <!-- FOOTER REEMPLAZADO -->
-<footer class="text-center text-xs text-gray-500 dark:text-gray-400 mt-6 space-y-2">
-  <div class="flex flex-wrap justify-center items-center gap-2">
-    <span data-i18n="coffee">💖 ¿Te gusta esta app?</span>
-    <a href="https://cafecito.app/marianobiotico" target="_blank" class="underline hover:text-blue-400">Cafecito</a>
-    <a href="https://www.buymeacoffee.com/marianobiotico" target="_blank" class="underline hover:text-yellow-500">BuyMeACoffee</a>
-    <a href="https://github.com/electrobiotica" target="_blank" title="GitHub" class="hover:text-white">
-      <svg class="inline w-4 h-4" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8.01 8.01 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2 .37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52 0-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82a7.65 7.65 0 012-.27c.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-    </a>
-    <a href="https://instagram.com/marianobiotico" target="_blank" title="Instagram" class="hover:text-pink-500">
-      <svg class="inline w-4 h-4" fill="currentColor" viewBox="0 0 448 512"><path d="M224 202.66A53.34 53.34 0 1 0 277.34 256 53.38 53.38 0 0 0 224 202.66Zm124.71 7.09a54 54 0 0 0-30.06-30.06c-20.75-8.23-70.1-6.35-93.64-6.35s-72.89-1.88-93.64 6.35a54 54 0 0 0-30.06 30.06c-8.23 20.75-6.35 70.1-6.35 93.64s-1.88 72.89 6.35 93.64a54 54 0 0 0 30.06 30.06c20.75 8.23 70.1 6.35 93.64 6.35s72.89 1.88 93.64-6.35a54 54 0 0 0 30.06-30.06c8.23-20.75 6.35-70.1 6.35-93.64s1.88-72.89-6.35-93.64ZM224 338a82 82 0 1 1 82-82 82.09 82.09 0 0 1-82 82Zm85.33-148.2a19.2 19.2 0 1 1 19.2-19.2 19.21 19.21 0 0 1-19.2 19.2ZM398.8 80A80.13 80.13 0 0 0 368 51.2C344.6 32 308.5 32 224 32s-120.6 0-144 19.2A80.13 80.13 0 0 0 49.2 80C32 103.4 32 139.5 32 224s0 120.6 19.2 144A80.13 80.13 0 0 0 80 398.8c23.4 17.2 59.5 17.2 144 17.2s120.6 0 144-19.2a80.13 80.13 0 0 0 30.8-30.8C416 344.6 416 308.5 416 224s0-120.6-17.2-144Z"/></svg>
-    </a>
-    <a href="mailto:marianobiotico@gmail.com" title="Email" class="hover:text-blue-400">
-      <svg class="inline w-4 h-4" fill="currentColor" viewBox="0 0 512 512"><path d="M502.3 190.8L327.4 338.4c-15.2 13-35.6 20.5-56.4 20.5s-41.2-7.5-56.4-20.5L9.7 190.8c-7.9-6.7-9-18.7-2.3-26.6l24.6-29.2c6.7-7.9 18.7-9 26.6-2.3L256 312.5 453.4 132.7c7.9-6.7 19.9-5.6 26.6 2.3l24.6 29.2c6.8 7.9 5.7 19.9-2.3 26.6z"/></svg>
-    </a>
-    <a href="https://wa.me/5491127278058" target="_blank" title="WhatsApp" class="hover:text-green-400">
-      <svg class="inline w-4 h-4" fill="currentColor" viewBox="0 0 448 512"><path d="M380.9 97.1C339-3.6 226.8-24.2 138.8 29.6 60.6 77.5 32.2 176.2 71.6 255.5L24 452l199.3-46.9c78.7 31.4 168.1-5.1 209.7-83.5 41.6-78.4 9.9-175.5-52.1-224.5zM232.3 361.2c-60.7 0-109.9-49.2-109.9-109.9 0-60.7 49.2-109.9 109.9-109.9s109.9 49.2 109.9 109.9c0 60.7-49.2 109.9-109.9 109.9z"/></svg>
-    </a>
-  </div>
+  <!-- PERFIL PROFESIONAL -->
+  <section class="px-6 py-12 text-sm space-y-4 bg-black border-t border-gray-800 profile-section">
+    <h3 class="text-2xl font-bold text-center mb-6 text-green-300" data-i18n="about_title">🧑‍💻 Sobre mí</h3>
+    <p data-i18n="about_intro"><strong class="text-green-400">Mariano Biotico</strong> – Desarrollador Full Stack especializado en Inteligencia Artificial aplicada. Combino código, datos y visión crítica para crear herramientas útiles, éticas y elegantes.</p>
+    <p data-i18n="about_focus">Me enfoco en aplicaciones web con IA para educación, salud, análisis legal y terapias conversacionales. Desarrollo con <code>Flask</code>, <code>GPT-4o</code>, <code>Puter.js</code>, <code>Tailwind</code> y exportación a <code>PDF/DOCX</code>.</p>
+    <p data-i18n="about_values">Trabajo con énfasis en privacidad, accesibilidad y diseño minimalista orientado al bienestar social y el pensamiento crítico.</p>
+  </section>
 
-  <div>
-    <span data-i18n="footer_title">Analizador de Alineación Política • 2025 —</span>
-    <a href="auditoria.html" target="_blank" data-i18n="audit" class="hover:underline">Auditoría</a> •
-    <a href="legal.html" target="_blank" data-i18n="terms" class="hover:underline">Términos</a> •
-    <a href="politica.html" target="_blank" data-i18n="privacy" class="hover:underline">Privacidad</a>
-  </div>
-</footer>
+  <!-- FOOTER COMPLETO -->
+  <footer class="text-center text-xs text-gray-500 mt-6 space-y-2">
+    <div class="flex flex-wrap justify-center items-center gap-2">
+      <span data-i18n="coffee">💖 ¿Te gustan estas apps?</span>
+      <a href="https://cafecito.app/marianobiotico" target="_blank" class="underline hover:text-blue-400">Cafecito</a>
+      <a href="https://www.buymeacoffee.com/marianobiotico" target="_blank" class="underline hover:text-yellow-500">BuyMeACoffee</a>
+      <a href="https://github.com/electrobiotica" target="_blank" title="GitHub" class="hover:text-white">GitHub</a>
+      <a href="https://instagram.com/marianobiotico" target="_blank" title="Instagram" class="hover:text-pink-500">Instagram</a>
+      <a href="mailto:marianobiotico@gmail.com" title="Email" class="hover:text-blue-400">Email</a>
+      <a href="https://wa.me/5491127278058" target="_blank" title="WhatsApp" class="hover:text-green-400">WhatsApp</a>
+    </div>
+  </footer>
 
+  <script>
+    const lang = {
+      es: {
+        title: "marianobiotico + DevApps",
+        subtitle: "Aplicaciones desarrolladas con IA, web y backend",
+        see_more: "Ver más",
+        about_title: "🧑‍💻 Sobre mí",
+        about_intro: "Mariano Biotico – Desarrollador Full Stack especializado en Inteligencia Artificial aplicada. Combino código, datos y visión crítica para crear herramientas útiles, éticas y elegantes.",
+        about_focus: "Me enfoco en aplicaciones web con IA para educación, salud, análisis legal y terapias conversacionales. Desarrollo con Flask, GPT-4o, Puter.js, Tailwind y exportación a PDF/DOCX.",
+        about_values: "Trabajo con énfasis en privacidad, accesibilidad y diseño minimalista orientado al bienestar social y el pensamiento crítico.",
+        coffee: "💖 ¿Te gustan estas apps?"
+      },
+      en: {
+        title: "marianobiotico + DevApps",
+        subtitle: "Apps built with AI, web and backend",
+        see_more: "See more",
+        about_title: "🧑‍💻 About me",
+        about_intro: "Mariano Biotico – Full Stack Developer specialized in Applied AI. I combine code, data and critical thinking to create useful, ethical and elegant tools.",
+        about_focus: "I focus on web applications with AI for education, health, legal analysis and therapeutic support. Built with Flask, GPT-4o, Puter.js, Tailwind and PDF/DOCX export.",
+        about_values: "I work with a focus on privacy, accessibility and minimal design oriented toward social wellbeing and critical thinking.",
+        coffee: "💖 Do you like these apps?"
+      }
+    };
+
+    function setLanguage(langCode) {
+      const dict = lang[langCode];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) el.innerText = dict[key];
+      });
+    }
+
+    // set default language
+    setLanguage('es');
+  </script>
 </body>
 </html>
