@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>marianobiotico + DevApps</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: white;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    h2 {
+      text-align: center;
+      margin: 30px 0 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #aaa;
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 0;
+      width: 100%;
+      max-width: 100vw;
+    }
+
+    .app-item {
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .app-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    .app-item:hover img {
+      opacity: 0.3;
+    }
+
+    .description {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.85);
+      padding: 12px;
+      border-radius: 14px;
+      font-size: 13px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      cursor: pointer;
+      width: 90%;
+    }
+
+    .app-item:hover .description {
+      opacity: 1;
+    }
+
+    .description a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+      margin-top: 6px;
+    }
+
+    .contact-section {
+      text-align: center;
+      padding: 30px 0;
+      background: #111;
+    }
+
+    .contact-section a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <h2>marianobiotico <span style="font-weight: lighter;">+</span> DevApps</h2>
+  <div class="subtitle">Aplicaciones desarrolladas con IA, web y backend</div>
+
+  <div class="app-grid">
+    <script>
+      const apps = [
+        { "nombre": "Terapeuta-AI", "desc": "Asistente psicológico configurable por enfoque terapéutico.", "link": "https://terapeuta-ai.onrender.com", "img": "images/tuterapiaai-c.jpg" },
+    { "nombre": "Te Lo Resumo AI Nomás", "desc": "App para resumir automáticamente texto, artículos o links.", "link": "https://teloresumoainomas.onrender.com", "img": "images/teloresumo-c.jpg" },
+    { "nombre": "News Analyzer AI", "desc": "Análisis de sesgo político y contenido en medios digitales.", "link": "https://news-analyzer-ai.onrender.com", "img": "images/newsanalyzerai-c.jpg" },
+    { "nombre": "MultiContratos", "desc": "Analizador legal para contratos de alquiler, trabajo, música, etc.", "link": "https://multicontratos.onrender.com", "img": "images/multicontratos-c.jpg" },
+    { "nombre": "Lyric Explainer AI", "desc": "Analiza letras de canciones y ofrece interpretación con IA.", "link": "https://lyricexplainerai.onrender.com", "img": "images/lyric-c.jpg" },
+    { "nombre": "Examnia", "desc": "Generador de exámenes en PDF y DOCX a partir de temas o textos.", "link": "https://examnia.onrender.com", "img": "images/examgen-c.jpg" },
+    { "nombre": "DR.AI Argentina", "desc": "Agente médico experimental con análisis sintomático local.", "link": "https://dr-ai-ar.onrender.com", "img": "images/drai-c.jpg" },
+    { "nombre": "SubsidiosYa", "desc": "Herramienta para verificar elegibilidad de subsidios.", "link": "https://subsidiosya.onrender.com", "img": "images/subsidiosya.jpg" },
+    { "nombre": "PuterBox Test", "desc": "Entorno de pruebas para interfaz IA con múltiples entradas y salidas.", "link": "https://puterbox-test.onrender.com", "img": "images/puterbox.jpg" },
+    { "nombre": "Multi-Model AI", "desc": "App para comparar múltiples modelos de lenguaje.", "link": "https://multi-model.onrender.com", "img": "images/multimodel.jpg" }
+      ];
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const grid = document.querySelector(".app-grid");
+        apps.forEach(app => {
+          const item = document.createElement("div");
+          item.className = "app-item";
+          item.innerHTML = `
+            <img src="${app.img}" alt="${app.nombre}">
+            <div class="description" onclick=\"location.href='${app.link}'\">
+              <strong>${app.nombre}</strong><br>
+              ${app.desc}
+              <a href="${app.link}" target="_blank">Ver más</a>
+            </div>
+          `;
+          grid.appendChild(item);
+        });
+      });
+    </script>
+  </div>
+
+  <div class="contact-section">
+    <h2>Contacto</h2>
+    <a href="mailto:marianobiotico@gmail.com">📧 marianobiotico@gmail.com</a>
+    <a href="https://wa.me/5491127278058">📱 WhatsApp: +54 9 11 2727-8058</a>
+    <a href="https://instagram.com/marianobiotico" target="_blank">📸 Instagram: @marianobiotico</a>
+  </div>
+</body>
+</html>
