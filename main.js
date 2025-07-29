@@ -1,11 +1,60 @@
 const apps = [
-  { nombre: "Terapeuta-AI", desc: "Asistente psicológico configurable por enfoque terapéutico.", link: "https://terapeuta-ai.onrender.com", img: "images/tuterapiaai-c.webp" },
-  { nombre: "Te Lo Resumo AI Nomás", desc: "App para resumir automáticamente texto, artículos o links.", link: "https://teloresumoainomas.onrender.com", img: "images/teloresumo-c.webp" },
-  { nombre: "News Analyzer AI", desc: "Análisis de sesgo político y contenido en medios digitales.", link: "https://news-analyzer-ai.onrender.com", img: "images/newsanalyzerai-c.webp" },
-  { nombre: "MultiContratos", desc: "Analizador legal para contratos de alquiler, trabajo, música, etc.", link: "https://multicontratos.onrender.com", img: "images/multicontratos-c.webp" },
-  { nombre: "Lyric Explainer AI", desc: "Analiza letras de canciones y ofrece interpretación con IA.", link: "https://lyricexplainerai.onrender.com", img: "images/lyric-c.webp" },
-  { nombre: "Examnia", desc: "Generador de exámenes en PDF y DOCX a partir de temas o textos.", link: "https://examnia.onrender.com", img: "images/examgen-c.webp" },
-  { nombre: "DR.AI Argentina", desc: "Agente médico experimental con análisis sintomático local.", link: "https://dr-ai-ar.onrender.com", img: "images/drai-c.webp" }
+  {
+    nombre: "Terapeuta-AI",
+    desc: "Asistente psicológico configurable por enfoque terapéutico.",
+    link: "https://terapeuta-ai.onrender.com",
+    img: "images/tuterapiaai-c.webp",
+    categoria: "appdev"
+  },
+  {
+    nombre: "Te Lo Resumo AI Nomás",
+    desc: "App para resumir automáticamente texto, artículos o links.",
+    link: "https://teloresumoainomas.onrender.com",
+    img: "images/teloresumo-c.webp",
+    categoria: "appdev"
+  },
+  {
+    nombre: "News Analyzer AI",
+    desc: "Análisis de sesgo político y contenido en medios digitales.",
+    link: "https://news-analyzer-ai.onrender.com",
+    img: "images/newsanalyzerai-c.webp",
+    categoria: "appdev"
+  },
+  {
+    nombre: "MultiContratos",
+    desc: "Analizador legal para contratos de alquiler, trabajo, música, etc.",
+    link: "https://multicontratos.onrender.com",
+    img: "images/multicontratos-c.webp",
+    categoria: "appdev"
+  },
+  {
+    nombre: "Lyric Explainer AI",
+    desc: "Analiza letras de canciones y ofrece interpretación con IA.",
+    link: "https://lyricexplainerai.onrender.com",
+    img: "images/lyric-c.webp",
+    categoria: "musica"
+  },
+  {
+    nombre: "Examnia",
+    desc: "Generador de exámenes en PDF y DOCX a partir de temas o textos.",
+    link: "https://examnia.onrender.com",
+    img: "images/examgen-c.webp",
+    categoria: "appdev"
+  },
+  {
+    nombre: "DR.AI Argentina",
+    desc: "Agente médico experimental con análisis sintomático local.",
+    link: "https://dr-ai-ar.onrender.com",
+    img: "images/drai-c.webp",
+    categoria: "appdev"
+  },
+  {
+    nombre: "INpulsa Fest",
+    desc: "Sitio oficial de organización y multimedia del evento.",
+    link: "#",
+    img: "images/inpulsa.jpg",
+    categoria: "inpulsa"
+  }
 ];
 
 const lang = {
@@ -41,20 +90,16 @@ function setLanguage(langCode) {
   });
 }
 
-// Inicialización
-document.addEventListener("DOMContentLoaded", () => {
-  setLanguage(currentLang);
-  
-  // Event listener para el botón de idioma
-  document.getElementById('langToggle').addEventListener('click', () => {
-    currentLang = currentLang === 'es' ? 'en' : 'es';
-    document.getElementById('langToggle').innerText = currentLang.toUpperCase() === 'ES' ? 'EN' : 'ES';
-    setLanguage(currentLang);
-  });
-
-  // Crear la grilla de aplicaciones
+// Función para renderizar apps filtradas
+function renderApps(categoria) {
   const grid = document.getElementById("app-grid");
-  apps.forEach(app => {
+  grid.innerHTML = "";
+
+  const filtradas = categoria === "all"
+    ? apps
+    : apps.filter(app => app.categoria === categoria);
+
+  filtradas.forEach(app => {
     const item = document.createElement("div");
     item.className = "app-item";
     item.innerHTML = `
@@ -66,5 +111,32 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
     grid.appendChild(item);
+  });
+
+  setLanguage(currentLang); // Actualiza traducciones si cambiaste idioma
+}
+
+// Inicialización
+document.addEventListener("DOMContentLoaded", () => {
+  setLanguage(currentLang);
+  renderApps("all");
+
+  document.getElementById('langToggle').addEventListener('click', () => {
+    currentLang = currentLang === 'es' ? 'en' : 'es';
+    document.getElementById('langToggle').innerText = currentLang.toUpperCase() === 'ES' ? 'EN' : 'ES';
+    setLanguage(currentLang);
+  });
+
+  document.querySelectorAll('.categoria-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const categoria = link.getAttribute('data-category');
+
+      // cambia clase activa
+      document.querySelectorAll('.categoria-link').forEach(el => el.classList.remove('active'));
+      link.classList.add('active');
+
+      renderApps(categoria);
+    });
   });
 });

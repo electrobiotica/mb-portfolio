@@ -37,17 +37,29 @@ body {
 }
 
 @media (max-width: 600px) {
-  .app-item img { 
-    height: auto; 
+  .app-item img {
+    height: auto;
   }
-  .description { 
-    font-size: 12px; 
-    padding: 10px; 
+  .description {
+    font-size: 12px;
+    padding: 10px;
+    opacity: 1 !important;
+    position: static;
+    transform: none;
+    background: #111;
+    border-radius: 0;
+    margin-top: 4px;
+    cursor: default;
   }
 }
 
-.app-item:hover img { 
-  opacity: 0.3; 
+@media (min-width: 601px) {
+  .app-item:hover img {
+    opacity: 0.3;
+  }
+  .app-item:hover .description {
+    opacity: 1;
+  }
 }
 
 .description {
@@ -64,10 +76,6 @@ body {
   cursor: pointer;
   width: 90%;
   max-width: 280px;
-}
-
-.app-item:hover .description { 
-  opacity: 1; 
 }
 
 .description a {
@@ -115,4 +123,31 @@ body {
 .lang-toggle:hover {
   background: #1a1a1a;
   color: #fff;
+}
+
+/* NAV CATEGORÍAS */
+.nav-categorias {
+  flex-wrap: wrap;
+}
+
+.nav-categorias a {
+  color: #ccc;
+  padding: 4px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.nav-categorias a:hover {
+  color: #0f0;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 6px rgba(0, 255, 128, 0.15);
+}
+
+.nav-categorias a.active {
+  color: #0f0;
+  border-bottom: 2px solid #0f0;
 }
